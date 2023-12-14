@@ -3,51 +3,57 @@ import { RecoilRoot } from "recoil";
 import { ActivityIndicator, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useFonts, Inter_900Black } from "@expo-google-fonts/dev";
+
+import { useTheme } from './hooks/useTheme';
 
 import { ExamplesScreens } from "./screens/ExamplesScreen";
 import { HomeScreen } from "./screens/HomeScreen";
 import { TokenListNavigator } from "./screens/TokenNavigator";
+import Header from "./components/Header";
 
 const Tab = createBottomTabNavigator();
 
 function TabNavigator() {
+  const { themeStyle } = useTheme();
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="Collection"
       screenOptions={{
         tabBarActiveTintColor: "#e91e63",
+        tabBarActiveBackgroundColor: themeStyle.backgroundColor,
+        tabBarInactiveBackgroundColor: themeStyle.backgroundColor,
+        header: Header
       }}
     >
       <Tab.Screen
-        name="Home"
+        name="Collection"
         component={HomeScreen}
         options={{
-          tabBarLabel: "Home",
+          tabBarLabel: "Collection",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
+            <MaterialIcons name="collections" color={color} size={size} />
           ),
         }}
       />
       <Tab.Screen
-        name="List"
+        name="Reward"
         component={TokenListNavigator}
         options={{
           headerShown: false,
-          tabBarLabel: "Tokens",
+          tabBarLabel: "Reward",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="bank" color={color} size={size} />
-          ),
+            <MaterialCommunityIcons name="gift-open" color={color} size={size} />          ),
         }}
       />
       <Tab.Screen
-        name="Examples"
+        name="Marketplace"
         component={ExamplesScreens}
         options={{
-          tabBarLabel: "Examples",
+          tabBarLabel: "Marketplace",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <MaterialCommunityIcons name="scale-balance" color={color} size={size} />
           ),
         }}
       />

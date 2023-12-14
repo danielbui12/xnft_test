@@ -10,8 +10,6 @@ declare global {
   }
 }
 
-export { useColorScheme } from "react-native";
-
 /** @deprecated use `usePublicKeys()` instead */
 export function usePublicKey(): PublicKey | undefined {
   const didLaunch = useDidLaunch();
