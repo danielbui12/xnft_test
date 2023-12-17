@@ -6,11 +6,14 @@
   "website": "https://mindforgex.info",
   "kind": "app",
   "icon": {
-    "md": "./assets/icon.png"
+    "md": "./assets/favicon.png"
   },
   "contact": "",
   "screenshots": [
-    "./assets/screenShot.png"
+    "./assets/screenshots/screenshot1.png",
+    "./assets/screenshots/screenshot2.png",
+    "./assets/screenshots/screenshot3.png",
+    "./assets/screenshots/screenshot4.png"
   ],
   "entrypoints": {
     "default": {
