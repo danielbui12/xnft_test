@@ -1,10 +1,10 @@
 import { registerRootComponent } from "expo";
 import { RecoilRoot } from "recoil";
-import { ActivityIndicator, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts, Inter_900Black } from "@expo-google-fonts/dev";
 import { ThemeContextProvider } from "./context/themeContext";
-import { TabNavigator } from "./TabNavigator";
+import { MainStackNavigator } from "./StackNavigator";
+import { FullScreenLoadingIndicator } from "./components/LoadingIndicator";
 
 function App() {
   let [fontsLoaded] = useFonts({
@@ -13,9 +13,7 @@ function App() {
 
   if (!fontsLoaded) {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <ActivityIndicator />
-      </View>
+      <FullScreenLoadingIndicator />
     );
   }
 
@@ -23,7 +21,7 @@ function App() {
     <RecoilRoot>
       <ThemeContextProvider>
         <NavigationContainer>
-          <TabNavigator />
+          <MainStackNavigator />
         </NavigationContainer>
       </ThemeContextProvider>
     </RecoilRoot>

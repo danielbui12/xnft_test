@@ -7,7 +7,7 @@ type ThemeContextType = {
   themeStyle: Record<string, any>,
   toggleTheme: (theme: Theme) => void
 }
-const ThemeContext = createContext<ThemeContextType>({
+export const ThemeContext = createContext<ThemeContextType>({
   theme: 'dark',
   themeStyle: {},
   toggleTheme: () => { }
@@ -44,5 +44,3 @@ export const ThemeContextProvider = ({ children }: any) => {
     </ThemeContext.Provider>
   )
 }
-
-export const useThemeContext = () => useContext(ThemeContext)

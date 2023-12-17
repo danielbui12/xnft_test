@@ -4,7 +4,6 @@ import {
   Text,
   FlatList,
   Image,
-  ActivityIndicator,
   Animated,
 } from "react-native";
 import tw from "twrnc";
@@ -16,6 +15,7 @@ import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { Screen } from "../components/Screen";
 import { TokenRow } from "../components/TokenRow";
+import { FullScreenLoadingIndicator } from "../components/LoadingIndicator";
 
 type RootStackParamList = {
   List: {};
@@ -23,14 +23,6 @@ type RootStackParamList = {
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
-
-function FullScreenLoadingIndicator() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <ActivityIndicator />
-    </View>
-  );
-}
 
 async function fetchTokenData(count = 20) {
   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${count}&page=1&sparkline=true&price_change_percentage=24h`;

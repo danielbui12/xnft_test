@@ -6,7 +6,8 @@ import { CollectionScreen } from "./screens/CollectionScreen";
 import { TokenListNavigator } from "./screens/TokenNavigator";
 import { Header } from "./components/Header";
 import { MarketplaceScreen } from "./screens/MarkePlace";
-import { useThemeContext } from "./context/themeContext";
+import { useThemeContext } from "./hooks/useThemeContext";
+import { COLORS } from "./consts/color";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +17,7 @@ export function TabNavigator() {
     <Tab.Navigator
       initialRouteName="Collection"
       screenOptions={{
-        tabBarActiveTintColor: "#e91e63",
+        tabBarActiveTintColor: COLORS.primary,
         tabBarActiveBackgroundColor: themeStyle.backgroundColor,
         tabBarInactiveBackgroundColor: themeStyle.backgroundColor,
         header: Header
@@ -24,7 +25,7 @@ export function TabNavigator() {
     >
       <Tab.Screen
         name="Collection"
-        component={CollectionScreen}
+        component={(props: any) => <CollectionScreen {...props}/>}
         options={{
           tabBarLabel: "Collection",
           tabBarIcon: ({ color, size }) => (
@@ -32,7 +33,7 @@ export function TabNavigator() {
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Reward"
         component={TokenListNavigator}
         options={{
@@ -42,7 +43,7 @@ export function TabNavigator() {
             <MaterialCommunityIcons name="gift-open" color={color} size={size} />
             ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Marketplace"
         component={MarketplaceScreen}

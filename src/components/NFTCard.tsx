@@ -5,19 +5,19 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
+  useWindowDimensions,
 } from 'react-native';
 import { COLORS } from "../consts/color";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { DEVICE_WIDTH } from '../consts/styles';
 
-export const NFTCard = ({ data }: any) => {
+export const NFTCard = ({ data, onPress, type, onDetailPress }: any) => {
+  const deviceSize = useWindowDimensions()
   return (
     <TouchableOpacity
-      style={style.card}
+      style={[style.card, { width: deviceSize.width * 0.55 }]}
       activeOpacity={0.8}
-      onPress={() => {
-        // navigation.navigate('DetailsScreen', data)
-      }}>
+      onPress={onPress}
+    >
       <MaterialCommunityIcons
         name="heart-outline"
         size={28}
@@ -29,26 +29,39 @@ export const NFTCard = ({ data }: any) => {
         style={{ height: '100%', width: '100%', borderRadius: 20 }}
       />
       <View style={style.cardDetailsCon}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image
-            source={require('../assets/images/eth.png')}
-            style={{ height: 25, width: 25, borderRadius: 25 }}
-          />
-          <Text
-            style={{
-              marginLeft: 2,
-              fontSize: 12,
-              fontWeight: 'bold',
-              color: COLORS.white,
-            }}>
-            {data.price}
-          </Text>
-        </View>
-        <View style={style.cardBtn}>
+        {
+          type === 'owned' ? (
+            <></>
+          ) : (
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Image
+                source={require('../assets/images/sol.png')}
+                style={{ height: 25, width: 25, borderRadius: 25 }}
+              />
+              <Text
+                style={{
+                  marginLeft: 2,
+                  fontSize: 12,
+                  fontWeight: 'bold',
+                  color: COLORS.white,
+                }}>
+                {data.price}
+              </Text>
+            </View>
+          )
+        }
+        <TouchableOpacity style={style.cardBtn} onPress={onDetailPress}>
           <Text style={{ color: COLORS.white, fontSize: 10, fontWeight: 'bold' }}>
-            Buy Now
+            {
+              type === 'owned' ? (
+                "Sell"
+              ) : (
+                "Buy Now"
+              )
+            }
           </Text>
-        </View>
+        </TouchableOpacity>
+
       </View>
     </TouchableOpacity>
   );
@@ -58,7 +71,6 @@ export const NFTCard = ({ data }: any) => {
 const style = StyleSheet.create({
   card: {
     height: 300,
-    width: DEVICE_WIDTH * 0.55,
     backgroundColor: COLORS.white,
     marginLeft: 20,
     borderRadius: 20,
@@ -86,7 +98,7 @@ const style = StyleSheet.create({
   cardBtn: {
     width: 70,
     height: 30,
-    backgroundColor: COLORS.violet,
+    backgroundColor: COLORS.primary,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,

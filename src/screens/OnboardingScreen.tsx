@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { COLORS } from '../consts/color';
 import { Screen } from '../components/Screen';
-import { useThemeContext } from '../context/themeContext';
+import { useThemeContext } from '../hooks/useThemeContext';
 
 const OnboardingScreen = () => {
   const { themeStyle } = useThemeContext();

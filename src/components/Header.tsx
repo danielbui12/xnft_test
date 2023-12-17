@@ -1,13 +1,13 @@
 import { View, StyleSheet, Image, Text } from 'react-native'
 import React from 'react'
-import { useThemeContext } from '../context/themeContext';
+import { useThemeContext } from '../hooks/useThemeContext';
 
 export function Header() {
   const { themeStyle }= useThemeContext();
 
   return (
     <View style={[styles.headerContainer, { backgroundColor: themeStyle.backgroundColor }]}>
-      <Text style={[styles.slogan, { color: themeStyle.color }]}>Reimagining Live Streaming</Text>
+      <Text style={[styles.slogan, { color: themeStyle.color }]}>Re-Imagining Live Streaming</Text>
       <Image style={styles.logo} source={require('../assets/images/logo.png')} alt='logo' />
     </View>
   )

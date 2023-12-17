@@ -28,3 +28,9 @@ export class XnftWallet implements Wallet {
     return this.#xnftInjection.signAllTransactions(txs);
   }
 }
+
+
+export type RootStackParamList = {
+  Home: {};
+  DetailNFT: { id: string };
+};

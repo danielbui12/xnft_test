@@ -3,4 +3,5 @@ export const COLORS = {
   grey: '#a8a8a8',
   black: '#000',
   violet: '#AE2EDB',
+  primary: '#e91e63',
 };
