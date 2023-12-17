@@ -1,9 +1,8 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { ExamplesScreens } from "./screens/ExamplesScreen";
+import { RewardScreen } from "./screens/RewardScreen";
 import { CollectionScreen } from "./screens/CollectionScreen";
-import { TokenListNavigator } from "./screens/TokenNavigator";
 import { Header } from "./components/Header";
 import { MarketplaceScreen } from "./screens/MarkePlace";
 import { useThemeContext } from "./hooks/useThemeContext";
@@ -33,20 +32,19 @@ export function TabNavigator() {
           ),
         }}
       />
-      {/* <Tab.Screen
+      <Tab.Screen
         name="Reward"
-        component={TokenListNavigator}
+        component={(props: any) => <RewardScreen {...props}/>}
         options={{
-          headerShown: false,
           tabBarLabel: "Reward",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="gift-open" color={color} size={size} />
-            ),
+          ),
         }}
-      /> */}
+      />
       <Tab.Screen
         name="Marketplace"
-        component={MarketplaceScreen}
+        component={(props: any) => <MarketplaceScreen {...props} />}
         options={{
           tabBarLabel: "Marketplace",
           tabBarIcon: ({ color, size }) => (

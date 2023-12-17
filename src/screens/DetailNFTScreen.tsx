@@ -5,12 +5,17 @@ import {
   StatusBar,
   View,
   Image,
+  ScrollView,
+  StyleSheet,
+  FlatList,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { COLORS } from '../consts/color';
 import { Screen } from '../components/Screen';
 import { useThemeContext } from '../hooks/useThemeContext';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { mockCollectionData } from '../consts/mockdata';
+import { NFTCard } from '../components/NFTCard';
 
 export const DetailNFTScreen = ({ navigation, route }: any) => {
   const data = route.params;
@@ -69,7 +74,7 @@ export const DetailNFTScreen = ({ navigation, route }: any) => {
             {data.price}
           </Text>
         </View>
-        <View
+        <TouchableOpacity
           style={{
             height: 40,
             width: 100,
@@ -77,11 +82,12 @@ export const DetailNFTScreen = ({ navigation, route }: any) => {
             borderRadius: 10,
             justifyContent: 'center',
             alignItems: 'center',
-          }}>
+          }}
+        >
           <Text style={{ color: themeStyle.color, fontWeight: 'bold', fontSize: 12 }}>
             Buy Now
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
 
       <View
@@ -144,6 +150,39 @@ export const DetailNFTScreen = ({ navigation, route }: any) => {
           Art| Basel Miami, and The PBS NewsHour.
         </Text>
       </View>
+
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+      >
+        <Text style={[style.title, { color: themeStyle.color }]}>Pixel on the mind</Text>
+        <FlatList
+          contentContainerStyle={{
+            paddingRight: 20,
+            paddingBottom: 20,
+          }}
+          horizontal
+          data={mockCollectionData}
+          renderItem={({ item }) => (
+            <NFTCard
+              data={item}
+              type='owned'
+              onPress={() => {
+                navigation.navigate("DetailNFT", item)
+              }}
+            />
+          )}
+        />
+      </ScrollView>
     </Screen>
   );
 };
+
+
+const style = StyleSheet.create({
+  title: {
+    marginHorizontal: 20,
+    marginVertical: 20,
+    fontWeight: 'bold',
+    fontSize: 20,
+  }
+});

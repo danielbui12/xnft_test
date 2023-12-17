@@ -10,7 +10,7 @@ import {
 import { mockCollectionData } from '../consts/mockdata';
 import { useThemeContext } from "../hooks/useThemeContext";
 import { NFTCard } from "../components/NFTCard";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types";
 
 export const CollectionScreen = ({ navigation }: NativeStackScreenProps<RootStackParamList, "Home">) => {
